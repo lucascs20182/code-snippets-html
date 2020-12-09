@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments HTML</title>
+</head>
+<body>
+    <header>
+        <h1>Experiments HTML</h1>
+    </header>
+    <nav>
+        <a href="./components/temp.html">00 - Temp</a> | 
+        <a href="./components/temp2.html">00 - Temp</a>
+    </nav>
+    <section id="content"></section>
+    <footer>
+        experiments HTML 5
+    </footer>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            const content = document.getElementById('content')
+            link.onclick = function(e) {
+                
+                // prevents the event that would happen by default
+                e.preventDefault()
+
+                fetch(link.href) // do an ajax request
+                    
+                    // takes the html content of the page that the request was made
+                    .then(resp => resp.text())
+                    .then(html => content.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+</html>
