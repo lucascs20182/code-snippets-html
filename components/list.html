@@ -1,0 +1,104 @@
+<!-- 
+    Javascript will only work if the file is accessed directly
+    
+    for example, open in the browser the follow path:
+    file:///home/lucascs20182/Desktop/code-snippets-html/components/list.html
+ -->
+
+<h1>Listas</h1>
+
+<!-- Ordered Lists -->
+<h2>Aprovados</h2>
+<ol>
+    <li>Bia</li>
+    <li>Pedro</li>
+    <li>Jão</li>
+    <li>Ana</li>
+</ol>
+
+<!-- Unordered Lists -->
+<h2>Lista de compras</h2>
+<ul>
+    <li>Queijo</li>
+    <li>Leite</li>
+    <li>Arroz</li>
+    <li>Pão</li>
+</ul>
+
+<!-- Definition lists -->
+<h2>Principais termos do glossário de Cloud Computing</h2>
+<dl>
+    <dt>BaaS</dt>
+    <dd>Backend Como Serviço</dd>
+    
+    <dt>IaaS</dt>
+    <dd>Infraestrutura como serviço</dd>
+
+    <dt>PaaS</dt>
+    <dd>Plataforma como serviço</dd>
+
+    <dt>SaaS</dt>
+    <dd>Software como serviço</dd>
+</dl>
+
+
+
+<!-- Listas aninhadas
+
+    simulating a folder / project structure
+ -->
+<h1 id="project">Projeto</h1>
+<ul class="tree">
+    <li>
+        <span wm-folder>backend</span>
+        <ul>
+            <li>
+                <span wm-folder>app</span>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>produto.js</li>
+                </ul>
+            </li>
+    
+            <li>
+                <span wm-folder>config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+    
+            <li>
+                <span wm-folder>frontend</span>
+                <ul>
+                    <li><span wm-folder>public</span>
+                        <ul>
+                            <li>app.css</li>
+                            <li>app.js</li>
+                            <li>index.html</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="./list.css">
+
+<script>
+    const alvos = document.querySelectorAll('[wm-folder]')
+
+    alvos.forEach(alvo => {
+        alvo.style.cursor = 'pointer'
+        
+        alvo.onclick = function() {
+            const ul = alvo.nextElementSibling // element after the selected
+            const displayUl = ul.style.display
+            
+            ul.style.display = displayUl === 'none' ? 'block' : 'none'
+        }
+    })    
+</script>
