@@ -42,6 +42,11 @@
 </div>
 
 <style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
     .texto {
         width: 400px;
     }
@@ -58,3 +63,58 @@
         background-size: 100%;
     }
 </style>
+
+<script>
+    function mover(elem, inicio, fim, passo, callback) {
+        const novoInicio = inicio - passo
+
+        if(inicio >= fim) {
+            elem.style.left = novoInicio + 'px'
+            
+            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 7)
+        } else {
+            callback()
+        }
+    }
+
+    function slider() {
+        const elementos = document.querySelectorAll('[wm-slider] > p')
+
+        const slides = Array.from(elementos)
+
+        exibirSlide(slides, slides[0])
+    }
+
+    function exibirSlide(slides, slide) {
+        slide.style.display = 'block'
+
+        // innerWidth: largura da página
+        const inicio = innerWidth
+
+        // clientWidth: largura da tag p
+        const fim = -slide.clientWidth
+
+        slide.style.left = `${inicio}px`
+
+        mover(slide, inicio, fim, 5, () => {
+            slide.style.display = 'none'
+            exibirSlide(slides, getProximo(slides, slide))
+        })
+    }
+
+    function getProximo(lista, atual) {
+        const i = lista.indexOf(atual) + 1
+
+        return i < lista.length ? lista[i] : lista[0]
+    }
+
+    slider()
+
+    // const p = document.querySelector('[wm-slider] > p')
+
+    // p.style.display = 'block'
+
+    // mover(p, 1500, -520, 5, () => {
+    //     console.log('terminou')
+    // })
+</script>
